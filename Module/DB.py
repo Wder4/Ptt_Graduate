@@ -56,10 +56,10 @@ if __name__ == '__main__':
     # test
     obj = DB()
     obj.DB_dir()
-    # obj.DBon('test')
+    obj.DBon('test')
 
-    # col = '"date" Text, "title" Text, "url" Text'
-    # obj.DBbld('test', 'table01', col)
+    col = '"date" Text, "title" Text, "url" Text'
+    obj.DBbld('test', 'table01', col)
 
     # obj.In_DB('table01', ('2', '5', 'test'))
     # obj.Del_DB('table01', 'title')
@@ -67,4 +67,4 @@ if __name__ == '__main__':
     # obj.Up_DB('table01', 'title="我"', 'date=2')
     # obj.Sch_DB('table01')
     #
-    # obj.DBoff()
+    obj.DBoff()

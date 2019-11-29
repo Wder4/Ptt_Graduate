@@ -11,7 +11,7 @@ except ImportError:
 import sys
 
 
-class spider:
+class sp:
     def __init__(self):
         pass
 
@@ -51,7 +51,7 @@ class spider:
 
 
 if __name__ == '__main__':
-    obj = spider()
+    obj = sp()
 
     # for tinyurl in map(tiny, sys.argv[1:]):
     #     print(tinyurl)

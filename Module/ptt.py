@@ -7,13 +7,15 @@ from queue import Queue
 from threading import Thread
 import time
 
-
 class PTT:
     def __init__(self):
         self.sp = sptool.sp()
         self.data = []
         self.chpage = []
-        self.titlist = []
+        self.ptt_pack = []
+        # self.ptt_date_list = []
+        # self.ptt_title_list = []
+        # self.ptt_url_list = []
         self.thread_page_num = 50
         self.page_Q = Queue()
 
@@ -21,6 +23,7 @@ class PTT:
         res = requests.get(url)
         data = pq(res.content.decode())
         self.data = data
+        # print(data)
         return self.data
 
     def Ptt_Btn(self):
@@ -54,49 +57,27 @@ class PTT:
         titles = rent('div.title')
         dates = rent('div.date')
         for i in range(len(titles)):
+            temp = {}
             title = pq(titles[i])
-            temp = []
-            temp.append(pq(dates[i]).text())  # date
-            temp.append(title.text())
             try:
                 url = 'https://www.ptt.cc'+ pq(title)('a').attr('href')
             except: # 本文章已刪除
                 url = '本文章已刪除'
-            temp.append(url)
-            self.titlist.append(temp)
-        return self.titlist
-
-    def Thread_Get_Page(self):
-        while self.page_Q.qsize() != 0:
-            link = self.page_Q.get()
-            self.Ptt_Parse(link)
-            time.sleep(1)
-
-    def Ptt_Parse_Start_Thread(self):
-        links = self.Allpage()
-        for link in links:
-            self.page_Q.put(link)
-        # print(self.page_Q.qsize())
-        for i in range(self.thread_page_num):
-            t = Thread(target=self.Thread_Get_Page)
-            t.start()
-        print('start to fetch data')
-        total_mission = self.page_Q.qsize()
-        while self.page_Q.qsize() != 0:
-            print('loading: {}/{}'.format(self.page_Q.qsize(), total_mission))
-            time.sleep(1)
-        print('\nclear')
-
-        return self.titlist
+            temp["url"] = url
+            temp["date"] = (pq(dates[i]).text())
+            temp["title"] = (title.text())
+            self.ptt_pack.append(temp)
+        # self.ptt_pack["date"] = self.ptt_date_list
+        # self.ptt_pack["title"] = self.ptt_title_list
+        # self.ptt_pack["url"] = self.ptt_url_list
+        print(self.ptt_pack)
+        return self.ptt_pack
 
 
 if __name__ == '__main__':
     obj = PTT()
     url = 'https://www.ptt.cc/bbs/Grad-ProbAsk/index1255.html'
-    obj.Get_Ptt(url)
+    # obj.Get_Ptt(url)
     # obj.Ptt_Btn()
-    # obj.Ptt_Parse_Start_Thread()
     # obj.Allpage()
     obj.Ptt_Parse(url)
-
-    # obj.Ptt_Btn()

@@ -37,12 +37,10 @@ class DB:
         self.cursor.execute(sqlstr)
         self.conn.commit()
 
-
     def Del_DB(self, table, col):
         sqlstr = "delete from {} where {}".format(table, col)
         self.conn.execute(sqlstr)
         self.conn.commit()
-
 
     def Del_table(self, table):
         sqlstr = "DROP TABLE {}".format(table)

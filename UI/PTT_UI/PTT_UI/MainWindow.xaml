@@ -1,0 +1,48 @@
+﻿<Window x:Class="PTT_UI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PTT_UI"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="382.667" Width="756">
+    <Grid HorizontalAlignment="Left" Height="26" VerticalAlignment="Top" Width="154" Margin="31,18,0,0">
+        <Label Content="WS連線狀態:" HorizontalAlignment="Left" VerticalAlignment="Top" Height="35" Width="150" Margin="5,2,0,-3" FontSize="12"/>
+        <Label x:Name="WS_Con_Stat" Content="未連線" HorizontalAlignment="Left" VerticalAlignment="Top" Height="24" Width="55" Margin="80,2,0,0" FontSize="12"/>
+        <Grid HorizontalAlignment="Left" Height="275" Margin="-1,49,-537,-298" VerticalAlignment="Top" Width="692">
+
+            <DataGrid x:Name="PTT_List" AutoGenerateColumns="False" Margin="10,38,10,10" >
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn Header="DATE" >
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock  Text="{Binding date}"  />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <DataGridTemplateColumn Header="TITLE" >
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock  Text="{Binding title}"  />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <DataGridTemplateColumn Header="URL" >
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock  Text="{Binding url}"  />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <Label Content="PTT" HorizontalAlignment="Left" Margin="10,2,0,0" VerticalAlignment="Top" Width="39"  FontSize="16" Height="24"/>
+            <Button x:Name="sch_btn" Content="search" HorizontalAlignment="Left" Margin="607,5,0,0" VerticalAlignment="Top" Width="75" FontSize="13" Click="sch_btn_Click"/>
+        </Grid>
+    </Grid>
+
+</Window>

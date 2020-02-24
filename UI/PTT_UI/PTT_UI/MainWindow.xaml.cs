@@ -120,7 +120,7 @@ namespace PTT_UI
             Dispatcher.Invoke(
                        DispatcherPriority.Normal,
                        new Action<Label, string>(Change_Label_Text),
-                       WS_Con_Stat, "已連線"
+                       WS_Con_Stat, "Connect"
                        );
         }
 
